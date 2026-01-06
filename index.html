@@ -1,196 +1,192 @@
-<!DOCTYPE HTML>
-<!--
-	Big Picture by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Happy First Year!</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kalnia+Glaze:wght@100..700&family=Metal+Mania&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oxanium:wght@200..800&display=swap" rel="stylesheet">
-<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+<meta charset="UTF-8" />
+<title>Have Fun</title>
+<style>
+  * { box-sizing: border-box; font-family: 'JetBrains Mono', 'Segoe UI', monospace; }
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top, #0a0f1f 0%, #020617 60%);
+    color: #e5e7eb;
+  }
+
+  /* 🌌 STAR BACKGROUND */
+  .stars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .star {
+    position: absolute;
+    width: 1px; height: 1px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: blink 3s infinite alternate, drift linear infinite;
+  }
+
+  @keyframes blink {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
+  }
+
+  @keyframes drift {
+    from { transform: translate(0, 0); }
+    to { transform: translate(50px, -30px); }
+  }
+
+  /* 🌟 CARD */
+  .card {
+    position: relative;
+    z-index: 10;
+    background: rgba(20, 30, 55, 0.85);
+    border: 1px solid rgba(100, 150, 255, 0.15);
+    box-shadow: 0 0 30px rgba(0, 140, 255, 0.15),
+                inset 0 0 20px rgba(0, 140, 255, 0.05);
+    padding: 32px;
+    border-radius: 16px;
+    width: 420px;
+  }
+  
+
+  h2 { text-align: center; margin-bottom: 28px; color: #c7d2fe; letter-spacing: 1px; font-weight: 600; }
+
+  .field { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; }
+  input {
+    flex: 1; padding: 12px; border-radius: 8px;
+    border: 1px solid rgba(96,165,250,0.25);
+    background: rgba(0,0,0,0.6); color: #e0f2fe;
+    outline: none; font-size: 14px;
+  }
+  input::placeholder { color: #64748b; }
+  input:focus { border-color: #60a5fa; box-shadow: 0 0 10px rgba(96,165,250,0.4); }
+
+  .indicator { width: 14px; height: 14px; border-radius: 50%; background: #334155; transition: 0.3s ease; }
+  .valid { background: #22d3ee; box-shadow: 0 0 10px #22d3ee; }
+  .invalid { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+
+  .hint-btn {
+    padding: 6px 10px; font-size: 11px; border-radius: 6px;
+    border: 1px solid rgba(96,165,250,0.3);
+    background: rgba(15, 23, 42, 0.8); color: #93c5fd;
+    cursor: pointer; transition: 0.2s ease;
+  }
+  .hint-btn:hover { background: rgba(96,165,250,0.2); box-shadow: 0 0 10px rgba(96,165,250,0.5); transform: translateY(-1px); }
+
+  .preview {
+    margin-top: 26px; padding: 14px; background: rgba(0, 0, 0, 0.65);
+    border-radius: 8px; text-align: center; font-size: 14px; letter-spacing: 1px;
+    color: #c7d2fe; border: 1px solid rgba(96,165,250,0.25); transition: 0.3s ease;
+  }
+  .preview span { color: #7dd3fc; font-weight: 600; }
+  @keyframes glow {
+    0% { box-shadow: 0 0 8px rgba(96,165,250,0.3); transform: translateY(0); }
+    50% { box-shadow: 0 0 25px rgba(96,165,250,0.9); transform: translateY(-3px); }
+    100% { box-shadow: 0 0 8px rgba(96,165,250,0.3); transform: translateY(0); }
+  }
+  .preview.active { animation: glow 1.5s ease-in-out infinite; border-color: #60a5fa; }
+</style>
 </head>
+<body>
 
-<body class="is-preload">
-	<canvas id="starfield"></canvas>
+<div class="stars"></div>
 
+<div class="card">
+  <h2>good luck :)</h2>
+  <p>computer browser recommended, enjoy your gift! </p>
 
-	<!-- Header -->
-	<header id="header">
-		<h1>♡</h1>
-		<nav>
-			<ul>
-			</ul>
-		</nav>
-	</header>
+  <div class="field">
+    <input id="input1" placeholder="hint: first gift" />
+    <button class="hint-btn" onclick="goHint(1)">Hint</button>
+    <div class="indicator" id="i1"></div>
+  </div>
 
-	<!-- Intro -->
-	<section id="intro" class="main style1 dark fullscreen">
-		<div class="content">
-			<header>
-				<img src="images/galaxy.gif" alt="" style="
-			position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: auto;
-            z-index: -1;
-            opacity: 0.6;" />
-				<h2>A Whole Year With You!!!</h2>
-			</header>
-			<p>Congrats on finding this! Here is a small website documenting our year. <strong>Mwah!</strong> </a></p>
-			<footer>
-				<a href="#one" class="button style2 down">More</a>
-			</footer>
-		</div>
-	</section>
+  <div class="field">
+    <input id="input2" placeholder="hint: our most common phrase" />
+    <button class="hint-btn" onclick="goHint(2)">Hint</button>
+    <div class="indicator" id="i2"></div>
+  </div>
 
-	<!-- One -->
-	<section id="one" class="main style3 primary">
-		<div class="content box style2">
-			<header>
-				<h2>In the past year...</h2>
-			</header>
-			<iframe
-				src='https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=v2%3A2PACX-1vRLNmFjeAziWS6sJWyTq1vnMZQRFdON6UuJYeeHzr-ucaGgRwautNkx53Iz3bAt9y7uecEtTiZyF7gp&font=Default&lang=en&initial_zoom=2&width=100%25&height=650'
-				width='100%' height='650' webkitallowfullscreen mozallowfullscreen allowfullscreen
-				frameborder='0'></iframe>
-		</div>
+  <div class="field">
+    <input id="input3" placeholder="hint: you" />
+    <button class="hint-btn" onclick="goHint(3)">Hint</button>
+    <div class="indicator" id="i3"></div>
+  </div>
 
-		<a href="#two" class="button style2 down anchored">Next</a>
-	</section>
-
-	<!-- Two -->
-	<section id="two" class="main style2 left dark fullscreen">
-		<div class="content box style2">
-			<header>
-				<h2>I love the way you R</h2>
-			</header>
-			<p>Total messages sent: 95,275.<br>
-				Average messages per day: 263.19.<br>
-				Total time spent messaging: ____ Hours with You.<br>
-			</p>
-		</div>
-		<a href="#work" class="button style2 down anchored">Next</a>
-	</section>
-
-
-	<!-- Work -->
-	<section id="work" class="main style3 primary">
-		<div class="content">
-			<header>
-				<h2>Here's a bit more data:</h2>
-				<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
-					Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis
-					arcu, id varius justo euismod in. Curabitur egestas consectetur magna vitae.</p>
-			</header>
-
-			<!-- Gallery  -->
-			<div class="gallery">
-				<article class="from-left">
-					<a href="images/fulls/01.jpg" class="image fit"><img src="images/thumbs/01.jpg"
-							title="The Anonymous Red" alt="" /></a>
-				</article>
-				<article class="from-right">
-					<a href="images/fulls/02.jpg" class="image fit"><img src="images/thumbs/02.jpg"
-							title="Airchitecture II" alt="" /></a>
-				</article>
-				<article class="from-left">
-					<a href="images/fulls/03.jpg" class="image fit"><img src="images/thumbs/03.jpg" title="Air Lounge"
-							alt="" /></a>
-				</article>
-				<article class="from-right">
-					<a href="images/fulls/04.jpg" class="image fit"><img src="images/thumbs/04.jpg" title="Carry on"
-							alt="" /></a>
-				</article>
-				<article class="from-left">
-					<a href="images/fulls/05.jpg" class="image fit"><img src="images/thumbs/05.jpg"
-							title="The sparkling shell" alt="" /></a>
-				</article>
-				<article class="from-right">
-					<a href="images/fulls/06.jpg" class="image fit"><img src="images/thumbs/06.jpg" title="Bent IX"
-							alt="" /></a>
-				</article>
-			</div>
-
-		</div>
-	</section>
-
-	<!-- Contact -->
-	<section id="contact" class="main style3 secondary">
-		<div class="content">
-			<header>
-				<h2>One last thing...</h2>
-				<p>Here's a Raccoon for you!</p>
-			</header>
-			<div class="box">
-
-			</div>
-		</div>
-	</section>
-
-	<!-- Footer -->
-	<footer id="footer">
-
-
-
-	</footer>
-
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.poptrox.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-
-</body>
+  <div class="preview" id="previewBox">
+    <span id="previewText">_____ ____ ___</span>.netlify.app
+  </div>
+</div>
 
 <script>
-const canvas = document.getElementById("starfield");
-const ctx = canvas.getContext("2d");
+  // 🌟 Star generation
+  const starsContainer = document.querySelector('.stars');
+  for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.width = star.style.height = Math.random() * 2 + 1 + 'px';
+    star.style.animationDuration = 2 + Math.random() * 3 + 's';
+    star.style.animationDelay = Math.random() * 4 + 's';
+    starsContainer.appendChild(star);
+  }
 
-function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  // ✅ Inputs logic
+  const i1 = document.getElementById("input1");
+  const i2 = document.getElementById("input2");
+  const i3 = document.getElementById("input3");
+  const p = document.getElementById("previewText");
+  const previewBox = document.getElementById("previewBox");
+  const i1dot = document.getElementById("i1");
+  const i2dot = document.getElementById("i2");
+  const i3dot = document.getElementById("i3");
+
+  function sanitize(value) { return value.toLowerCase().replace(/[^a-z0-9]/g, ""); }
+
+  function update() {
+  const v1 = i1.value.toLowerCase().trim();
+  const v2 = i2.value.toLowerCase().trim();
+  const v3 = i3.value.toLowerCase().trim();
+
+  p.textContent = `${v1 || "___"}_${v2 || "___"}_${v3 || "___"}`;
+
+  // ✅ Set exact phrases here
+  const exact1 = "ready";       // replace with your exact phrase
+  const exact2 = "mwah";      // replace with your exact phrase
+  const exact3 = "go";        // replace with your exact phrase
+
+  // Only glow if exact match
+  i1dot.className = "indicator " + (v1 === exact1 ? "valid" : "invalid");
+  i2dot.className = "indicator " + (v2 === exact2 ? "valid" : "invalid");
+  i3dot.className = "indicator " + (v3 === exact3 ? "valid" : "invalid");
+
+  // Activate preview only if all are exact matches
+  if (v1 === exact1 && v2 === exact2 && v3 === exact3) {
+    previewBox.classList.add("active");
+  } else {
+    previewBox.classList.remove("active");
+  }
 }
-resize();
-window.addEventListener("resize", resize);
 
-const stars = Array.from({ length: 300 }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 1.5 + 0.5,
-    a: Math.random()
-}));
-
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (const s of stars) {
-        s.a += (Math.random() - 0.5) * 0.02;
-        s.a = Math.max(0.2, Math.min(1, s.a));
-
-        ctx.fillStyle = `rgba(255,255,255,${s.a})`;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fill();
-    }
-    requestAnimationFrame(draw);
-}
-
-draw();
+  function goHint(n) {
+    const pages = {1:"https://mywordle.strivemath.com/?word=nsugj",2:"https://redactle.net/en/g/loud-abrasive-gas",3:"gou.png"};
+    window.location.href = pages[n];
+  }
+  i1.addEventListener("input", update);
+  i2.addEventListener("input", update);
+  i3.addEventListener("input", update);
 </script>
 
-
+</body>
 </html>
